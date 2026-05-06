@@ -1,97 +1,330 @@
-import { FaWhatsapp, FaInstagram, FaEnvelope } from "react-icons/fa";
+const links = [
+  {
+    label: "WhatsApp",
+    handle: "// resposta rápida",
+    color: "#25D366",
+    bg: "rgba(37,211,102,0.1)",
+    href: "https://wa.me/21972505271?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20seus%20projetos!",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.565 4.13 1.545 5.848L.057 23.272c-.06.317.228.598.537.537l5.516-1.469A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.796 9.796 0 01-5.02-1.376l-.356-.213-3.722.991.999-3.639-.234-.375A9.796 9.796 0 012.182 12C2.182 6.56 6.56 2.182 12 2.182S21.818 6.56 21.818 12 17.44 21.818 12 21.818z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Instagram",
+    handle: "// @davilepore_",
+    color: "#d6249f",
+    bg: "rgba(214,36,159,0.1)",
+    href: "https://instagram.com/davilepore_",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg>
+    ),
+  },
+  {
+    label: "E-mail",
+    handle: "// davileporedev@email.com",
+    color: "#8B5CF6",
+    bg: "rgba(139,92,246,0.1)",
+    href: "mailto:davileporedev@email.com",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+      </svg>
+    ),
+  },
+];
+
+function ContactLink({ item }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        padding: "16px 18px",
+        border: `1px solid ${hovered ? "rgba(57,255,100,0.4)" : "rgba(57,255,100,0.12)"}`,
+        background: hovered ? "rgba(57,255,100,0.06)" : "#0f180f",
+        borderRadius: 3,
+        cursor: "pointer",
+        textDecoration: "none",
+        transform: hovered ? "translateX(4px)" : "translateX(0)",
+        transition: "all 0.2s ease",
+      }}
+    >
+      <div
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: "50%",
+          background: item.bg,
+          color: item.color,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        {item.icon}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <span
+          style={{ fontSize: 13, color: "#b0d4b0", letterSpacing: "0.05em" }}
+        >
+          {item.label}
+        </span>
+        <span style={{ fontSize: 11, color: "#4a7a50", marginTop: 2 }}>
+          {item.handle}
+        </span>
+      </div>
+      <span
+        style={{
+          marginLeft: "auto",
+          color: "#39ff64",
+          opacity: 0.4,
+          fontSize: 16,
+        }}
+      >
+        →
+      </span>
+    </a>
+  );
+}
+
+import { useState } from "react";
 
 function Contact() {
-  return (
-    <section className="min-h-screen w-full bg-[rgba(255,255,255,0.05)] flex justify-center rounded-full items-center text-white mt-50">
-      <div className="p-10 gap-10 flex justify-center">
-        <div className="flex flex-col w-content gap-20 p-6">
-          <h2 className="text-start text-5xl font-bold -tracking-[-0.5rem]">
-            Fale Comigo
-          </h2>
-          <div className="space-y-4">
-            <div className="flex flex-row items-center gap-4">
-              <FaWhatsapp
-                size={40}
-                className="text-[#25D366] drop-shadow-[0_0_8px_rgba(37,211,102,0.5)]"
-              />
-              <p className="p-0 m-0">Whatsapp</p>
-            </div>
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [btnHovered, setBtnHovered] = useState(false);
 
-            <div className="flex flex-row items-center gap-4">
-              <div className="relative group cursor-pointer">
-                <svg width="0" height="0">
-                  <radialGradient
-                    id="instagram-gradient"
-                    r="150%"
-                    cx="30%"
-                    cy="107%"
-                  >
-                    <stop stopColor="#fdf497" offset="0%" />
-                    <stop stopColor="#fdf497" offset="5%" />
-                    <stop stopColor="#fd5949" offset="45%" />
-                    <stop stopColor="#d6249f" offset="60%" />
-                    <stop stopColor="#285AEB" offset="90%" />
-                  </radialGradient>
-                </svg>
-                <FaInstagram
-                  size={40}
-                  style={{ fill: "url(#instagram-gradient)" }}
-                  className="drop-shadow-[0_0_8px_rgba(214,36,159,0.5)]"
-                />
-              </div>
-              <p className="p-0 m-0">Instagram</p>
-            </div>
-            <div className="flex flex-row items-center gap-4">
-              <FaEnvelope
-                size={40}
-                className="text-[#8B5CF6] drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]"
-              />
-              <p className="p-0 m-0">E-mail</p>
-            </div>
-          </div>
-        </div>
-        <div className="w-15 text-5xl flex justify-center items-center font-bold">
-          <h2>OU</h2>
-        </div>
-        <div className="flex w-full justify-center items-center flex-col max-w-150 p-6 border border-[rgba(255,255,255,0.01)] rounded-2xl">
-          <h2 className="mb-6 text-2xl">Envie uma Mensagem</h2>
-          <form
-            action="#"
-            className="flex flex-col gap-6 w-[70%] items-center p-6 rounded-2xl"
+  const handleSubmit = () => {
+    const text = encodeURIComponent(`Olá, sou ${name}!\n\n${message}`);
+    window.open(`https://wa.me/21972505271?text=${text}`, "_blank");
+  };
+
+  const inputStyle = {
+    background: "#0f180f",
+    border: "1px solid rgba(57,255,100,0.15)",
+    color: "#e8ffe8",
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: 12,
+    padding: "10px 14px",
+    borderRadius: 3,
+    outline: "none",
+    width: "100%",
+    boxSizing: "border-box",
+    transition: "border-color 0.2s",
+  };
+
+  return (
+    <section
+      style={{
+        background: "#0a0f0a",
+        minHeight: "100vh",
+        padding: "56px 48px",
+        fontFamily: "'JetBrains Mono', monospace",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <style>{`
+        @keyframes statusBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
+        input::placeholder, textarea::placeholder { color: #2a4a2e; }
+        input:focus, textarea:focus { border-color: rgba(57,255,100,0.45) !important; box-shadow: 0 0 0 2px rgba(57,255,100,0.07); }
+      `}</style>
+
+      {/* Glow center */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          width: 600,
+          height: 400,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(ellipse, rgba(57,255,100,0.04) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <p
+        style={{
+          fontSize: 11,
+          color: "#39ff64",
+          letterSpacing: "0.18em",
+          opacity: 0.6,
+          margin: "0 0 8px",
+        }}
+      >
+        // contact.tsx
+      </p>
+      <h2
+        style={{
+          fontSize: 40,
+          fontWeight: 700,
+          color: "#e8ffe8",
+          lineHeight: 1.05,
+          margin: "0 0 4px",
+        }}
+      >
+        Fale
+        <br />
+        <span style={{ color: "#39ff64" }}>Comigo</span>
+      </h2>
+      <p
+        style={{
+          fontSize: 13,
+          color: "#4a7a50",
+          margin: "0 0 40px",
+          letterSpacing: "0.05em",
+        }}
+      >
+        Disponível para projetos freelance e oportunidades.
+      </p>
+
+      {/* Grid */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1px 1fr",
+          gap: "0 40px",
+          alignItems: "start",
+        }}
+      >
+        {/* Links */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 14,
+            paddingRight: 8,
+          }}
+        >
+          <p
+            style={{
+              fontSize: 10,
+              color: "#39ff64",
+              opacity: 0.5,
+              letterSpacing: "0.15em",
+              margin: "0 0 4px",
+            }}
           >
-            <div className="w-full">
-              <label
-                for="first_name"
-                class="block mb-2.5 text-sm font-medium text-heading"
-              >
-                First name
-              </label>
-              <input
-                type="text"
-                id="first_name"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div className="w-full">
-              <label
-                for="message"
-                class="block mb-2.5 text-sm font-medium text-heading"
-              >
-                Your message
-              </label>
-              <textarea
-                id="message"
-                rows="4"
-                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
-                placeholder="Write your thoughts here..."
-              ></textarea>
-            </div>
-            <button className="bg-[#25D366] p-2 rounded-md w-[80%] hover:translate-y-1 transition-all duration-300 cursor-pointer">
-              Enviar para Whatsapp
-            </button>
-          </form>
+            // canais diretos
+          </p>
+          {links.map((item) => (
+            <ContactLink key={item.label} item={item} />
+          ))}
+        </div>
+
+        {/* Vertical divider */}
+        <div
+          style={{ background: "rgba(57,255,100,0.12)", alignSelf: "stretch" }}
+        />
+
+        {/* Form */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+            paddingLeft: 8,
+          }}
+        >
+          <p
+            style={{
+              fontSize: 10,
+              color: "#39ff64",
+              opacity: 0.5,
+              letterSpacing: "0.15em",
+              margin: "0 0 4px",
+            }}
+          >
+            // enviar mensagem
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <label
+              style={{
+                fontSize: 10,
+                color: "#4a7a50",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
+              nome
+            </label>
+            <input
+              type="text"
+              placeholder="seu_nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={inputStyle}
+            />
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <label
+              style={{
+                fontSize: 10,
+                color: "#4a7a50",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
+              mensagem
+            </label>
+            <textarea
+              placeholder="// escreva aqui..."
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              style={{ ...inputStyle, resize: "none" }}
+            />
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            onMouseEnter={() => setBtnHovered(true)}
+            onMouseLeave={() => setBtnHovered(false)}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 12,
+              color: "#0a0f0a",
+              background: "#39ff64",
+              border: "none",
+              padding: "12px 24px",
+              borderRadius: 3,
+              cursor: "pointer",
+              letterSpacing: "0.1em",
+              boxShadow: btnHovered
+                ? "0 0 30px rgba(57,255,100,0.6)"
+                : "0 0 18px rgba(57,255,100,0.35)",
+              transform: btnHovered ? "translateY(-1px)" : "translateY(0)",
+              transition: "all 0.2s",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+            enviar_via_whatsapp()
+          </button>
         </div>
       </div>
     </section>
