@@ -1,61 +1,58 @@
-import lamborghini from "../assets/lambo.jpg";
+import doces1 from "../assets/doces1.png";
+import doces2 from "../assets/doces2.png";
+import doces3 from "../assets/doces3.png";
+import doces4 from "../assets/doces4.png";
+import doces5 from "../assets/doces5.png";
+import fisio1 from "../assets/fisio1.png";
+import fisio2 from "../assets/fisio2.png";
+import fisio3 from "../assets/fisio3.png";
+import fisio4 from "../assets/fisio4.png";
+import casal1 from "../assets/casal1.png";
+import casal2 from "../assets/casal2.png";
+import casal3 from "../assets/casal3.png";
+import casal4 from "../assets/casal4.png";
+import { useState } from "react";
 
 const projects = [
   {
     techs: [
-      "HTML",
-      "CSS",
-      "Javascript",
-      "Bootstrap",
+      "React",
+      "Typescript",
+      "Next.js",
+      "Tailwind",
       "Node.js",
-      "Express",
       "Postgres",
     ],
     name: "Site de Doces",
-    img: lamborghini,
+    img: doces1,
+    demonstration: [doces1, doces2, doces3, doces4, doces5],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 1",
   },
   {
-    techs: ["HTML", "CSS", "Javascript", "Bootstrap"],
-    name: "Site Barbearia",
-    img: lamborghini,
+    techs: ["React", "Javascrit", "Tailwind", "Vite"],
+    name: "Landing Page de Fisioterapia",
+    img: fisio1,
+    demonstration: [fisio1, fisio2, fisio3, fisio4],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 2",
   },
   {
-    techs: ["HTML", "CSS", "Javascript"],
-    name: "Site Contagem de Itens",
-    img: lamborghini,
+    techs: ["React", "Typescript", "Tailwind", "Next.js"],
+    name: "Template Site de Casal",
+    img: casal3,
+    demonstration: [casal1, casal2, casal3, casal4],
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 3",
   },
-  {
-    techs: [],
-    name: "Project 4",
-    img: lamborghini,
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 4",
-  },
-  {
-    techs: [],
-    name: "Project 5",
-    img: lamborghini,
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 5",
-  },
-  {
-    techs: ["HTML", "CSS", "Javascript", "Bootstrap"],
-    name: "Project 6",
-    img: lamborghini,
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 6",
-  },
 ];
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onSelect }) {
   return (
-    <div className="group flex flex-col h-full gap-4 p-4 rounded-sm border border-[rgba(57,255,100,0.12)] bg-[rgba(57,255,100,0.02)] hover:border-[rgba(57,255,100,0.35)] hover:bg-[rgba(57,255,100,0.05)] hover:shadow-[0_0_24px_rgba(57,255,100,0.08)] transition-all duration-300 relative overflow-hidden">
+    <div
+      onClick={onSelect}
+      className="group flex flex-col h-full gap-4 p-4 rounded-sm border border-[rgba(57,255,100,0.12)] bg-[rgba(57,255,100,0.02)] hover:border-[rgba(57,255,100,0.35)] hover:bg-[rgba(57,255,100,0.05)] hover:shadow-[0_0_24px_rgba(57,255,100,0.08)] transition-all duration-300 relative overflow-hidden"
+    >
       {/* corner brackets */}
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#39ff64] opacity-60" />
       <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#39ff64] opacity-60" />
@@ -105,6 +102,8 @@ function ProjectCard({ project, index }) {
 }
 
 function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [lightboxSrc, setLightboxSrc] = useState(null);
   return (
     <section
       id="projetos"
@@ -139,9 +138,80 @@ function Projects() {
       {/* grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
         {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard
+            key={index}
+            project={project}
+            index={index}
+            onSelect={() => setSelectedProject(project)}
+          />
         ))}
       </div>
+      {selectedProject && (
+        <>
+          <div
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-50 bg-[rgba(10,15,10,0.95)] backdrop-blur-sm flex items-center justify-center p-6"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0a0f0a] border border-[rgba(57,255,100,0.2)] p-6 rounded-sm max-w-2xl w-full"
+            >
+              <div className="flex flex-col lg:flex-row gap-6">
+                <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 gap-4">
+                  <h3 className="text-lg font-bold text-[#39ff64]">
+                    {selectedProject.name}
+                  </h3>
+                  <p className="text-sm text-[#7aab7a] max-h-40 overflow-y-auto">
+                    {selectedProject.description}
+                  </p>
+                  {selectedProject.techs.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[rgba(57,255,100,0.1)]">
+                      {selectedProject.techs.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="font-mono text-[10px] text-[#39ff64] border border-[rgba(57,255,100,0.25)] bg-[rgba(57,255,100,0.04)] px-2 py-0.5 rounded-sm tracking-wider"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {selectedProject.demonstration?.length > 0 && (
+                  <div className="grid grid-cols-2 gap-3 lg:w-1/2">
+                    {selectedProject.demonstration.map((src, i) => (
+                      <img
+                        key={i}
+                        src={src}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxSrc(src);
+                        }}
+                        className="w-full h-32 object-cover rounded-sm cursor-pointer
+                             border border-transparent hover:border-[#39ff64]
+                             transition-all duration-200 hover:opacity-80"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {lightboxSrc && (
+            <div
+              onClick={() => setLightboxSrc(null)}
+              className="fixed inset-0 z-60 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+            >
+              <img
+                src={lightboxSrc}
+                className="max-w-full max-h-full object-contain rounded-sm shadow-2xl"
+              />
+            </div>
+          )}
+        </>
+      )}
     </section>
   );
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const links = [
   {
     label: "WhatsApp",
@@ -101,8 +103,6 @@ function ContactLink({ item }) {
   );
 }
 
-import { useState } from "react";
-
 function Contact() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -129,14 +129,8 @@ function Contact() {
 
   return (
     <section
-      style={{
-        background: "#0a0f0a",
-        minHeight: "100vh",
-        padding: "56px 48px",
-        fontFamily: "'JetBrains Mono', monospace",
-        position: "relative",
-        overflow: "hidden",
-      }}
+      id="contato"
+      className="bg-[#0a0f0a] min-h-screen px-6 sm:px-10 lg:px-20 py-14 font-mono relative overflow-hidden"
     >
       <style>{`
         @keyframes statusBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
@@ -144,84 +138,31 @@ function Contact() {
         input:focus, textarea:focus { border-color: rgba(57,255,100,0.45) !important; box-shadow: 0 0 0 2px rgba(57,255,100,0.07); }
       `}</style>
 
-      {/* Glow center */}
+      {/* Glow */}
       <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
-          width: 600,
-          height: 400,
-          borderRadius: "50%",
           background:
             "radial-gradient(ellipse, rgba(57,255,100,0.04) 0%, transparent 70%)",
-          pointerEvents: "none",
         }}
       />
 
-      <p
-        style={{
-          fontSize: 11,
-          color: "#39ff64",
-          letterSpacing: "0.18em",
-          opacity: 0.6,
-          margin: "0 0 8px",
-        }}
-      >
-        // contact.tsx
-      </p>
-      <h2
-        style={{
-          fontSize: 40,
-          fontWeight: 700,
-          color: "#e8ffe8",
-          lineHeight: 1.05,
-          margin: "0 0 4px",
-        }}
-      >
+      {/* Header */}
+
+      <h2 className="text-4xl font-bold text-[#e8ffe8] leading-tight mb-1">
         Fale
         <br />
-        <span style={{ color: "#39ff64" }}>Comigo</span>
+        <span className="text-[#39ff64]">Comigo</span>
       </h2>
-      <p
-        style={{
-          fontSize: 13,
-          color: "#4a7a50",
-          margin: "0 0 40px",
-          letterSpacing: "0.05em",
-        }}
-      >
+      <p className="text-[13px] text-[#4a7a50] tracking-[0.05em] mb-10">
         Disponível para projetos freelance e oportunidades.
       </p>
 
-      {/* Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1px 1fr",
-          gap: "0 40px",
-          alignItems: "start",
-        }}
-      >
-        {/* Links */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            paddingRight: 8,
-          }}
-        >
-          <p
-            style={{
-              fontSize: 10,
-              color: "#39ff64",
-              opacity: 0.5,
-              letterSpacing: "0.15em",
-              margin: "0 0 4px",
-            }}
-          >
+      {/* Layout: coluna em mobile, dois lados em desktop */}
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 items-start">
+        {/* Esquerda / topo: links */}
+        <div className="flex flex-col gap-[14px] w-full lg:flex-1 lg:pr-10">
+          <p className="text-[10px] text-[#39ff64] opacity-50 tracking-[0.15em] mb-1">
             // canais diretos
           </p>
           {links.map((item) => (
@@ -229,41 +170,17 @@ function Contact() {
           ))}
         </div>
 
-        {/* Vertical divider */}
-        <div
-          style={{ background: "rgba(57,255,100,0.12)", alignSelf: "stretch" }}
-        />
+        {/* Divisor — horizontal em mobile, vertical em desktop */}
+        <div className="w-full h-px lg:w-px lg:h-auto lg:self-stretch bg-[rgba(57,255,100,0.12)]" />
 
-        {/* Form */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 16,
-            paddingLeft: 8,
-          }}
-        >
-          <p
-            style={{
-              fontSize: 10,
-              color: "#39ff64",
-              opacity: 0.5,
-              letterSpacing: "0.15em",
-              margin: "0 0 4px",
-            }}
-          >
+        {/* Direita / base: formulário */}
+        <div className="flex flex-col gap-4 w-full lg:flex-1 lg:pl-10">
+          <p className="text-[10px] text-[#39ff64] opacity-50 tracking-[0.15em] mb-1">
             // enviar mensagem
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <label
-              style={{
-                fontSize: 10,
-                color: "#4a7a50",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-              }}
-            >
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] text-[#4a7a50] tracking-[0.15em] uppercase">
               nome
             </label>
             <input
@@ -275,15 +192,8 @@ function Contact() {
             />
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <label
-              style={{
-                fontSize: 10,
-                color: "#4a7a50",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-              }}
-            >
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] text-[#4a7a50] tracking-[0.15em] uppercase">
               mensagem
             </label>
             <textarea
