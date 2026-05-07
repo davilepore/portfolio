@@ -51,7 +51,7 @@ function ProjectCard({ project, index, onSelect }) {
   return (
     <div
       onClick={onSelect}
-      className="group flex flex-col h-full gap-4 p-4 rounded-sm border border-[rgba(57,255,100,0.12)] bg-[rgba(57,255,100,0.02)] hover:border-[rgba(57,255,100,0.35)] hover:bg-[rgba(57,255,100,0.05)] hover:shadow-[0_0_24px_rgba(57,255,100,0.08)] transition-all duration-300 relative overflow-hidden"
+      className="group flex flex-col h-full gap-4 p-4 rounded-sm border border-[rgba(57,255,100,0.12)] bg-[rgba(57,255,100,0.02)] hover:border-[rgba(57,255,100,0.35)] hover:bg-[rgba(57,255,100,0.05)] hover:shadow-[0_0_24px_rgba(57,255,100,0.08)] transition-all duration-300 relative overflow-hidden cursor-pointer"
     >
       {/* corner brackets */}
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#39ff64] opacity-60" />

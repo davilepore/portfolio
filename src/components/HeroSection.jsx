@@ -157,13 +157,15 @@ function Hero() {
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-2">
             <button
-              className="text-xs text-[#0a0f0a] bg-[#39ff64] px-5 py-2 rounded-[3px] tracking-[0.08em] transition-all"
+              href="#projetos"
+              className="text-xs text-[#0a0f0a] bg-[#39ff64] px-5 py-2 rounded-[3px] tracking-[0.08em] transition-all cursor-pointer"
               style={{ boxShadow: "0 0 18px rgba(57,255,100,0.4)" }}
             >
               ver_projetos()
             </button>
             <button
-              className="text-xs text-[#39ff64] border px-5 py-2 rounded-[3px] tracking-[0.08em] transition-all"
+              href="#contato"
+              className="text-xs text-[#39ff64] border px-5 py-2 rounded-[3px] tracking-[0.08em] transition-all cursor-pointer"
               style={{ borderColor: "rgba(57,255,100,0.35)" }}
             >
               contato.send()

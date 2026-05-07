@@ -161,7 +161,7 @@ function Contact() {
       {/* Layout: coluna em mobile, dois lados em desktop */}
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 items-start">
         {/* Esquerda / topo: links */}
-        <div className="flex flex-col gap-[14px] w-full lg:flex-1 lg:pr-10">
+        <div className="flex flex-col gap-3.5 w-full lg:flex-1 lg:pr-10">
           <p className="text-[10px] text-[#39ff64] opacity-50 tracking-[0.15em] mb-1">
             // canais diretos
           </p>
