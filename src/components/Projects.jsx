@@ -27,7 +27,7 @@ const projects = [
     img: doces1,
     demonstration: [doces1, doces2, doces3, doces4, doces5],
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 1",
+      "Um site completo para uma confeitaria fictícia, com catálogo de produtos, carrinho de compras, área de contato e integrado com Whatsapp. O frontend foi construído com React, Typescript, Next.js e Tailwind, enquanto o backend utiliza Node.js, PostgreSQL e Prisma para garantir uma experiência fluida e responsiva.",
   },
   {
     techs: ["React", "Javascrit", "Tailwind", "Vite"],
@@ -35,7 +35,7 @@ const projects = [
     img: fisio1,
     demonstration: [fisio1, fisio2, fisio3, fisio4],
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 2",
+      "Um site completo para uma clínica de fisioterapia, com informações sobre os serviços, equipe e localização. O frontend foi construído com React, Javascript, Tailwind e Vite para garantir uma experiência responsiva e moderna.",
   },
   {
     techs: ["React", "Typescript", "Tailwind", "Next.js"],
@@ -43,7 +43,7 @@ const projects = [
     img: casal3,
     demonstration: [casal1, casal2, casal3, casal4],
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate odit eligendi fugit voluptas rerum architecto similique voluptatum fugiat totam quae, eius dolor in, nihil minima facere iusto eveniet consectetur officiis? 3",
+      "Um template de site para casais, ideal para compartilhar histórias, fotos e informações sobre eventos especiais e presentear. Construído com React, Typescript, Tailwind e Next.js, o site oferece uma experiência elegante e personalizada para celebrar momentos únicos.",
   },
 ];
 
